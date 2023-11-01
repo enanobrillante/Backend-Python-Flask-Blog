@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h2 class="titulo_inicio">Lista de posteos</h2>
+<p>Cantidad de Posteos: {{cantidad}}</p>
+{% for p in posti %} <!--post es el nombre de lo que se pasa en return render_template("inicio.html", posti=post) de la vista inicio-->
+
+<section>
+
+	<h3 class="post-title">{{ p.titulo }}</h3>
+	<p class="date">Publicado en: {{ p.fecha.strftime('%m/%d/%y')}}</p>
+	<p>{{ p.texto }}</p>
+
+	<form class="delete-button" action="{{ url_for('borrar')}}" method="POST">
+		<button class = "btn-delete" value="{{p.id}}" name="post_id_borrar">Borrar Post</button>
+	</form>
+
+</section>
+
+{% endfor %}
+{% endblock %}
